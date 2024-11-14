@@ -20,6 +20,8 @@ public class GridObject
 	public List<Unit> GetUnitList() => unitList;
 	
 	public void RemoveUnit(Unit unit) => unitList.Remove(unit);
+	
+	public bool HasAnyUnity() => unitList.Count > 0;
 
 	public override string ToString()
 	{

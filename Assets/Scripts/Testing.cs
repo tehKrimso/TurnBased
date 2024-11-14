@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Testing : MonoBehaviour
 {
+	[SerializeField]
+	private Unit unit;
 	
 	private void Start()
 	{
@@ -12,6 +14,11 @@ public class Testing : MonoBehaviour
 	
 	private void Update()
 	{
-		
+		if(Input.GetKeyDown(KeyCode.T))
+		{
+			GridSystemVisual.Instance.HideAllGridPosition();
+			List<GridPosition> validPositions = unit.GetMoveAction().GetValidActionGridPositionList();
+			GridSystemVisual.Instance.ShowGridPositionList(validPositions);
+		}
 	}
 }

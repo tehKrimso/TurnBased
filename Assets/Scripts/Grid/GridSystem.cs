@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
 using UnityEngine;
 
 public class GridSystem
@@ -60,4 +61,15 @@ public class GridSystem
 	{
 		return gridObjectArray[gridPosition.x,gridPosition.z];
 	}
+	
+	public bool IsValidGridPosition(GridPosition gridPosition)
+	{
+		return gridPosition.x >= 0 && 
+			   gridPosition.z >= 0 && 
+			   gridPosition.x < height && 
+			   gridPosition.z < width;
+	}
+	
+	public int GetWidth() => width;
+	public int GetHeight() => height;
 }
