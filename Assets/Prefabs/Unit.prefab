@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 3246545428596272186}
   - component: {fileID: 4288879092852840376}
   - component: {fileID: 5393415900973492521}
+  - component: {fileID: 4528431132303208835}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -86,6 +87,19 @@ MonoBehaviour:
   rotationSpeed: 10
   distanceThreshold: 0.1
   unitAnimator: {fileID: 8492157706014773390}
+--- !u!114 &4528431132303208835
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161632187095590331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8a3730eb37738f54b9c8d7830923191f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  spinAddAmount: 360
 --- !u!1 &6273047839907098291
 GameObject:
   m_ObjectHideFlags: 0
