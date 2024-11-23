@@ -22,6 +22,9 @@ public class ShootAction : BaseAction
 	private State state;
 	
 	[SerializeField]
+	private int shootDamage = 40;
+	
+	[SerializeField]
 	private int maxShootDistance = 7;
 	[SerializeField]
 	private float rotationToTargetSpeed = 15f;
@@ -69,7 +72,7 @@ public class ShootAction : BaseAction
 			targetUnit = targetUnit,
 			shootingUnit = unit
 		});
-		targetUnit.Damage();
+		targetUnit.Damage(shootDamage);
 	}
 
 	private void NextState()
