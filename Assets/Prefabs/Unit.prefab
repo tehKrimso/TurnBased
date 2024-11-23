@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 4288879092852840376}
   - component: {fileID: 5393415900973492521}
   - component: {fileID: 4528431132303208835}
+  - component: {fileID: -5478311206645751922}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -49,6 +50,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6fb3db2452a7fc5458b880a731ea8e6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isEnemy: 0
 --- !u!65 &4288879092852840376
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -99,7 +101,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a3730eb37738f54b9c8d7830923191f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinAddAmount: 360
+  targetSpin: 360
+--- !u!114 &-5478311206645751922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161632187095590331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6935e98d97cc87e4e8960c8da38e0e01, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &6273047839907098291
 GameObject:
   m_ObjectHideFlags: 0

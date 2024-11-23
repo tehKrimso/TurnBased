@@ -5,8 +5,6 @@ using UnityEngine;
 
 public class SpinAction : BaseAction
 {
-	public delegate void SpinCompleteDelegate();
-	
 	[SerializeField]
 	private float targetSpin = 360f;
 	
@@ -22,8 +20,7 @@ public class SpinAction : BaseAction
 		if(totalSpinAmount>= targetSpin)
 		{
 			totalSpinAmount = 0f;
-			isActive = false;
-			onActionComplete();
+			ActionComplete();
 		}
 
 		float spinAddAmount = targetSpin * Time.deltaTime;
@@ -33,9 +30,7 @@ public class SpinAction : BaseAction
 	
 	public override void TakeAction(GridPosition grdidPosition, Action onActionComplete)
 	{
-		this.onActionComplete = onActionComplete;
-		isActive = true;
-
+		ActionStart(onActionComplete);
 	}
 	
 	public override string GetActionName()

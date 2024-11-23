@@ -33,4 +33,14 @@ public class GridObject
 		
 		return $"{gridPosition.ToString()}\n{unitString}";
 	}
+
+	public Unit GetUnit()
+	{
+		if(HasAnyUnity())
+		{
+			return unitList[0];
+		}
+		
+		return null;
+	}
 }
