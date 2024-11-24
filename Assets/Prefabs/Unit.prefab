@@ -47,6 +47,7 @@ GameObject:
   - component: {fileID: -5478311206645751922}
   - component: {fileID: 1056809060224888592}
   - component: {fileID: -727516833719193924}
+  - component: {fileID: 5721850174786390866}
   m_Layer: 7
   m_Name: Unit
   m_TagString: Untagged
@@ -146,6 +147,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6935e98d97cc87e4e8960c8da38e0e01, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  shootDamage: 40
   maxShootDistance: 7
   rotationToTargetSpeed: 15
 --- !u!114 &1056809060224888592
@@ -176,6 +178,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7edcf57c046c97d4cbd2e29e3f5b3a32, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: 100
+--- !u!114 &5721850174786390866
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2161632187095590331}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 05904536530b1104fa0e63c21004b714, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  unitRagdollPrefab: {fileID: 735659589803517154, guid: d88da4cd2db4f724696adae3ff11defd,
+    type: 3}
+  originalRootBone: {fileID: 8403678910315226508}
 --- !u!1 &6273047839907098291
 GameObject:
   m_ObjectHideFlags: 0
@@ -692,6 +710,12 @@ Transform:
 --- !u!4 &8403223787468272022 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4580766925885248, guid: 2f3e27eecb190e44a9af50723c394274,
+    type: 3}
+  m_PrefabInstance: {fileID: 8398784142740963030}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8403678910315226508 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 4966341056781146, guid: 2f3e27eecb190e44a9af50723c394274,
     type: 3}
   m_PrefabInstance: {fileID: 8398784142740963030}
   m_PrefabAsset: {fileID: 0}
