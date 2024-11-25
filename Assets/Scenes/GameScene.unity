@@ -3104,6 +3104,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7c036f694e1e4124989f9ffd61b39c6f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  gridVisualTypeMaterialList:
+  - gridVisualType: 0
+    material: {fileID: 2100000, guid: 93bd67068083bc047be6528cfb004a43, type: 2}
+  - gridVisualType: 1
+    material: {fileID: 2100000, guid: 299a8a5167989dd4a930c303dd658c2d, type: 2}
+  - gridVisualType: 2
+    material: {fileID: 2100000, guid: 8c6966a1c84022843afa92a28de1937a, type: 2}
+  - gridVisualType: 4
+    material: {fileID: 2100000, guid: 938c203b715cb7541b6d5457f6d06396, type: 2}
+  - gridVisualType: 3
+    material: {fileID: 2100000, guid: d95d8a2f7f70b264e94489af30ed78ee, type: 2}
   gridSystemVisualPrefab: {fileID: 7933551289871723306, guid: 14c0b9b8e619da142bf4029f81c2bf0e,
     type: 3}
 --- !u!1 &1863349193
