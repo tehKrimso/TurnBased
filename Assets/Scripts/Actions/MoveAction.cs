@@ -43,8 +43,9 @@ public class MoveAction : BaseAction
 		{
 			
 			OnStopMoving?.Invoke(this, EventArgs.Empty);
-		}
 			ActionComplete();
+		}
+		
 			
 		
 		transform.forward = Vector3.Lerp(transform.forward, moveDirection, Time.deltaTime * rotationSpeed);
@@ -53,9 +54,9 @@ public class MoveAction : BaseAction
 	
 	public override void TakeAction(GridPosition gridPosition, Action onActionComplete)
 	{
-		ActionStart(onActionComplete);
 		this.targetPosition = LevelGrid.Instance.GetWorldPosition(gridPosition);
 		OnStartMoving?.Invoke(this, EventArgs.Empty);
+		ActionStart(onActionComplete);
 	}
 	
 	public override List<GridPosition> GetValidActionGridPositionList()
