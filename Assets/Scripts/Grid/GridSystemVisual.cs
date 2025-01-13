@@ -52,7 +52,7 @@ public class GridSystemVisual : MonoBehaviour
 		
 		for(int x = 0; x < LevelGrid.Instance.GetWidth(); x++)
 		{
-			for(int z = 0; z < LevelGrid.Instance.GetWidth(); z++)
+			for(int z = 0; z < LevelGrid.Instance.GetHeight(); z++)
 			{
 				Transform gridSystemVisualSingleTransform = 
 					Instantiate(gridSystemVisualPrefab, LevelGrid.Instance.GetWorldPosition(new GridPosition(x,z)),Quaternion.identity);
