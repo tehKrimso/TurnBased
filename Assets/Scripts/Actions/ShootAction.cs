@@ -28,6 +28,8 @@ public class ShootAction : BaseAction
 	private int maxShootDistance = 7;
 	[SerializeField]
 	private float rotationToTargetSpeed = 15f;
+	[SerializeField]
+	private LayerMask obstaclesLayerMask;
 	private float stateTimer;
 	private Unit targetUnit;
 	private bool canShootBullet;
@@ -137,6 +139,19 @@ public class ShootAction : BaseAction
 				
 				//no nullref check coz previous if states that position IS occupied
 				if(targetUnit.IsEnemy() == unit.IsEnemy()) //units on same team
+				{
+					continue;
+				}
+				
+				float unitShoulderHeight = 1.7f;
+				Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+				Vector3 shootDirection = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+				
+				if(Physics.Raycast(
+					unitWorldPosition + Vector3.up * unitShoulderHeight,
+					shootDirection,
+					Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
+					obstaclesLayerMask ))
 				{
 					continue;
 				}

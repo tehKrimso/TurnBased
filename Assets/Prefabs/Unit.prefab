@@ -151,6 +151,9 @@ MonoBehaviour:
   shootDamage: 40
   maxShootDistance: 7
   rotationToTargetSpeed: 15
+  obstaclesLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
 --- !u!114 &1056809060224888592
 MonoBehaviour:
   m_ObjectHideFlags: 0
