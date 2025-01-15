@@ -19,7 +19,9 @@ public class UnitRagdoll : MonoBehaviour
 	{
 		this.originalRootBone = originalRootBone;	
 		MatchAllChildTransforms(originalRootBone, ragdollRootBone);
-		ApplyExplosionToRagdoll(ragdollRootBone, explosionForce, transform.position, explosionRadius);
+		
+		Vector3 randomDir = new Vector3(Random.Range(-1f,1f),0,Random.Range(-1f,1f));
+		ApplyExplosionToRagdoll(ragdollRootBone, explosionForce, transform.position + randomDir, explosionRadius);
 	}
 	
 	private void MatchAllChildTransforms(Transform root, Transform clone)
