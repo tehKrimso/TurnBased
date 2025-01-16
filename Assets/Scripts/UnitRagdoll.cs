@@ -13,16 +13,14 @@ public class UnitRagdoll : MonoBehaviour
 	[SerializeField]
 	private Transform ragdollRootBone;
 	
-	private Transform originalRootBone;
-	
 	public void Setup(Transform originalRootBone)
-	{
-		this.originalRootBone = originalRootBone;	
+	{	
 		MatchAllChildTransforms(originalRootBone, ragdollRootBone);
 		
 		Vector3 randomDir = new Vector3(Random.Range(-1f,1f),0,Random.Range(-1f,1f));
 		ApplyExplosionToRagdoll(ragdollRootBone, explosionForce, transform.position + randomDir, explosionRadius);
 	}
+	
 	
 	private void MatchAllChildTransforms(Transform root, Transform clone)
 	{
@@ -33,9 +31,11 @@ public class UnitRagdoll : MonoBehaviour
 			{
 				cloneChild.position = child.position;
 				cloneChild.rotation = child.rotation;
+				
+				MatchAllChildTransforms(child, cloneChild);
 			}
 			
-			MatchAllChildTransforms(child, cloneChild);
+			
 		}
 	}
 	

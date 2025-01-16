@@ -54,8 +54,8 @@ public class ShootAction : BaseAction
 			case State.Shooting:
 				if(canShootBullet)
 				{
-					Shoot();
 					canShootBullet = false;
+					Shoot();
 				}
 				break;
 			case State.Cooloff:
