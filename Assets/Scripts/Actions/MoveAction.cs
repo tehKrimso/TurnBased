@@ -78,22 +78,22 @@ public class MoveAction : BaseAction
 		{
 			for( int z = -maxMoveDistance; z <= maxMoveDistance; z++)
 			{
-				GridPosition offsetGridPosition = new GridPosition(x,z, 0);
-				GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
-				
-				
-				
-				if(LevelGrid.Instance.IsValidGridPosition(testGridPosition) && //pos inside grid
-				   testGridPosition != unitGridPosition && //position not same as unit pos
-				   !LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition) //pos not occupied
-				   && Pathfinding.Instance.GetPathLength(unitGridPosition, testGridPosition) < maxMoveDistance * pathfindingDistanceMultiplier //pos within move distance
-				   && Pathfinding.Instance.IsWalkableGridPosition(testGridPosition) //pos is walkable
-				   && Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition) //pos is reachable
-				   )
+				for(int floor = -maxMoveDistance; floor <= maxMoveDistance; floor ++)
 				{
-					validGridPositionList.Add(testGridPosition);
-				}
+					GridPosition offsetGridPosition = new GridPosition(x,z, floor);
+					GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
 				
+					if(LevelGrid.Instance.IsValidGridPosition(testGridPosition) && //pos inside grid
+				   		testGridPosition != unitGridPosition && //position not same as unit pos
+				   		!LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition) //pos not occupied
+				   		&& Pathfinding.Instance.GetPathLength(unitGridPosition, testGridPosition) < maxMoveDistance * pathfindingDistanceMultiplier //pos within move distance
+				   		&& Pathfinding.Instance.IsWalkableGridPosition(testGridPosition) //pos is walkable
+				   		&& Pathfinding.Instance.HasPath(unitGridPosition, testGridPosition) //pos is reachable
+				   		)
+						{
+							validGridPositionList.Add(testGridPosition);
+						}
+				}
 			}
 		}
 		
@@ -112,20 +112,20 @@ public class MoveAction : BaseAction
 		int targetCountAtPosition = shootAction.GetTargetCountAtPosition(gridPosition);
 		
 		if (targetCountAtPosition == 0)
-    {
-        return new EnemyAIAction
-        {
-            gridPosition = gridPosition,
-            actionValue = UnityEngine.Random.Range(1, 51)
-        };
-    }
-    else
-    {
-        return new EnemyAIAction
-        {
-            gridPosition = gridPosition,
-            actionValue = 50 + targetCountAtPosition * 10
-        };
-    }
+	{
+		return new EnemyAIAction
+		{
+			gridPosition = gridPosition,
+			actionValue = UnityEngine.Random.Range(1, 51)
+		};
+	}
+	else
+	{
+		return new EnemyAIAction
+		{
+			gridPosition = gridPosition,
+			actionValue = 50 + targetCountAtPosition * 10
+		};
+	}
 	}
 }
