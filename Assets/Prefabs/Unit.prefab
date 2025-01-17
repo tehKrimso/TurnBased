@@ -156,7 +156,7 @@ MonoBehaviour:
   rotationToTargetSpeed: 15
   obstaclesLayerMask:
     serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 320
 --- !u!114 &4431280392480021322
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -198,6 +198,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31b8a5f5d03ee37429d2bbde0b76110c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  maxInteractionDistance: 1
 --- !u!114 &1056809060224888592
 MonoBehaviour:
   m_ObjectHideFlags: 0

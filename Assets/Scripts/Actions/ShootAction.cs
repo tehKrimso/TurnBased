@@ -49,7 +49,8 @@ public class ShootAction : BaseAction
 		{
 			case State.Aiming:
 				Vector3 aimDir = (targetUnit.GetWorldPosition() - transform.position).normalized;
-				transform.forward = Vector3.Lerp(transform.forward, aimDir, Time.deltaTime * rotationToTargetSpeed);
+				aimDir.y = 0f;
+				transform.forward = Vector3.Slerp(transform.forward, aimDir, Time.deltaTime * rotationToTargetSpeed);
 				break;
 			case State.Shooting:
 				if(canShootBullet)
@@ -124,48 +125,50 @@ public class ShootAction : BaseAction
 		{
 			for( int z = -maxShootDistance; z <= maxShootDistance; z++)
 			{
-				GridPosition offsetGridPosition = new GridPosition(x,z,0);
-				GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
-				
-				if(!LevelGrid.Instance.IsValidGridPosition(testGridPosition))//pos not inside grid
+				for(int floor = -maxShootDistance; floor <= maxShootDistance; floor ++)
 				{
-					continue;
+					GridPosition offsetGridPosition = new GridPosition(x,z,floor);
+					GridPosition testGridPosition = unitGridPosition + offsetGridPosition;
+				
+					if(!LevelGrid.Instance.IsValidGridPosition(testGridPosition))//pos not inside grid
+					{
+						continue;
+					}
+					
+					int testDistance = Mathf.Abs(x) + Mathf.Abs(z);
+					if(testDistance > maxShootDistance)
+					{
+						continue;
+					}
+					
+					if(!LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition)) //pos not occupied
+					{
+						continue;
+					}
+					
+					Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(testGridPosition);
+					
+					//no nullref check coz previous if states that position IS occupied
+					if(targetUnit.IsEnemy() == unit.IsEnemy()) //units on same team
+					{
+						continue;
+					}
+					
+					float unitShoulderHeight = 1.7f;
+					Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
+					Vector3 shootDirection = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
+					
+					if(Physics.Raycast(
+						unitWorldPosition + Vector3.up * unitShoulderHeight,
+						shootDirection,
+						Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
+						obstaclesLayerMask ))
+					{
+						continue;
+					}
+					
+					validGridPositionList.Add(testGridPosition);
 				}
-				
-				int testDistance = Mathf.Abs(x) + Mathf.Abs(z);
-				if(testDistance > maxShootDistance)
-				{
-					continue;
-				}
-				
-				if(!LevelGrid.Instance.HasAnyUnitOnGridPosition(testGridPosition)) //pos not occupied
-				{
-					continue;
-				}
-				
-				Unit targetUnit = LevelGrid.Instance.GetUnitAtGridPosition(testGridPosition);
-				
-				//no nullref check coz previous if states that position IS occupied
-				if(targetUnit.IsEnemy() == unit.IsEnemy()) //units on same team
-				{
-					continue;
-				}
-				
-				float unitShoulderHeight = 1.7f;
-				Vector3 unitWorldPosition = LevelGrid.Instance.GetWorldPosition(unitGridPosition);
-				Vector3 shootDirection = (targetUnit.GetWorldPosition() - unitWorldPosition).normalized;
-				
-				if(Physics.Raycast(
-					unitWorldPosition + Vector3.up * unitShoulderHeight,
-					shootDirection,
-					Vector3.Distance(unitWorldPosition, targetUnit.GetWorldPosition()),
-					obstaclesLayerMask ))
-				{
-					continue;
-				}
-				
-				validGridPositionList.Add(testGridPosition);
-				
 			}
 		}
 		
