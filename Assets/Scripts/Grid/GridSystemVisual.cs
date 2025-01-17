@@ -65,8 +65,10 @@ public class GridSystemVisual : MonoBehaviour
 		LevelGrid.Instance.OnAnyUnitMovedGridPosition += LevelGrid_OnAnyUnitMovedGridPosition;
 		
 		UpdateGridVisual();
+		
+		
 	}
-
+	
 	private void LevelGrid_OnAnyUnitMovedGridPosition(object sender, EventArgs e)
 	{
 		UpdateGridVisual();
