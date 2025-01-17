@@ -6,6 +6,8 @@ using System;
 
 public class CameraController : MonoBehaviour
 {
+	public static CameraController Instance {get; private set;}
+	
 	[SerializeField]
 	private float moveSpeed = 10f;
 	
@@ -21,11 +23,23 @@ public class CameraController : MonoBehaviour
 	private Vector3 followOffset;
 	
 	private const float MIN_FOLLOW_Y_OFFSET = 2f;
-	private const float MAX_FOLLOW_Y_OFFSET = 12f;
+	private const float MAX_FOLLOW_Y_OFFSET = 15f;
 	
 	[SerializeField]
 	private CinemachineVirtualCamera cinemachineVirtualCamera;
 	private CinemachineTransposer cinemachineTransposer;
+	
+	private void Awake()
+	{
+		if(Instance != null)
+		{
+			Debug.LogError("There's more than one CameraController! " + transform + " - " + Instance);
+			Destroy(gameObject);
+			return;
+		}
+		
+		Instance = this;
+	}
 	
 	private void Start()
 	{
@@ -63,5 +77,10 @@ public class CameraController : MonoBehaviour
 
 		followOffset.y = Mathf.Clamp(followOffset.y, MIN_FOLLOW_Y_OFFSET, MAX_FOLLOW_Y_OFFSET);
 		cinemachineTransposer.m_FollowOffset = Vector3.Lerp(cinemachineTransposer.m_FollowOffset, followOffset, zoomSpeed * Time.deltaTime);
+	}
+	
+	public float GetCameraHeight()
+	{
+		return followOffset.y;
 	}
 }
