@@ -24,6 +24,7 @@ public class UnitAnimator : MonoBehaviour
 		{
 			moveAction.OnStartMoving += MoveAction_OnStartMoving;
 			moveAction.OnStopMoving += MoveAction_OnStopMoving;
+			moveAction.OnChangeFloorsStart += MoveAction_OnChangeFloorsStart;
 		}
 		
 		if(TryGetComponent<ShootAction>(out ShootAction shootAction))
@@ -37,7 +38,19 @@ public class UnitAnimator : MonoBehaviour
 			swordAction.OnSwordActionCompleted += swordAction_OnSwordActionCompleted;
 		}
 	}
-	
+
+	private void MoveAction_OnChangeFloorsStart(object sender, MoveAction.OnChangeFloorsStartEventArgs e)
+	{
+		if(e.targetGridPosition.floor > e.unitGridPosition.floor)
+		{
+			animator.SetTrigger("JumpUp");
+		}
+		else
+		{
+			animator.SetTrigger("JumpDown");
+		}
+	}
+
 	private void Start()
 	{
 		EquipRifle();
